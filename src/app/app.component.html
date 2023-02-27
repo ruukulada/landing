@@ -1,6 +1,35 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
-        <span>RuukuLada</span>
+        <span>You got some notifications dawg...</span>
+        <span class="spacer"></span>
+        <button mat-icon-button (menuClosed)="toggle()" (click)="toggle()" [matMenuTriggerFor]="beforeMenu">
+            <mat-icon [matBadgeHidden]="hidden" matBadgeColor="warn" matBadge="3">
+                {{hidden ? 'notifications' : 'notifications_none'}}
+            </mat-icon>
+        </button>
+        <mat-menu class="menu" #beforeMenu="matMenu" xPosition="before">
+            <mat-list>
+                <button mat-menu-item>
+                    <mat-list-item>
+                        <mat-icon class="person" matListItemIcon>person</mat-icon><div matListItemTitle>Tanner Dungus</div>
+                        <div matListItemLine>Sup Brillan, it's Tanner from high school. You still playing those PC games?</div>
+                    </mat-list-item>
+                </button>
+                <button mat-menu-item>
+                    <mat-list-item>
+                        <mat-icon matListItemIcon>person</mat-icon><div matListItemTitle>Brendenathan Schlitter</div>
+                        <div matListItemLine>Big Shawnathan, you still grilling Burgers for BK? We should link, I got a business idea.</div>
+                    </mat-list-item>
+                </button>
+                <button mat-menu-item>
+                    <mat-list-item>
+                        <mat-icon matListItemIcon>person</mat-icon><div matListItemTitle>Brillan Dennis</div>
+                        <div matListItemLine>Long time no see, Bristopher. Are you still addicted to those Japanese TV shows?</div>
+                    </mat-list-item>
+                </button>
+            </mat-list>
+        </mat-menu>
     </mat-toolbar-row>
 </mat-toolbar>
+<mat-spinner color="warn" class="loading"></mat-spinner>
 <router-outlet></router-outlet>

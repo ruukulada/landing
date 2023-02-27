@@ -1,30 +1,27 @@
 @use '@angular/material' as mat;
 @include mat.core();
 
-// Define a dark theme
+@import './steam-palettes.scss';
+
+$primary: mat.define-palette($steam-grey, 700);
+$accent: mat.define-palette($steam-blue);
+$warn: mat.define-palette($steam-green);
+
 $dark-theme: mat.define-dark-theme((
     color: (
-        primary: mat.define-palette(mat.$pink-palette),
-        accent: mat.define-palette(mat.$blue-grey-palette),
-    ),
+        primary: $primary, accent: $accent, warn: $warn,
+    )
 ));
-
-// Define a light theme
 $light-theme: mat.define-light-theme((
     color: (
-        primary: mat.define-palette(mat.$indigo-palette),
-        accent: mat.define-palette(mat.$pink-palette),
-    ),
+        primary: $primary, accent: $accent, warn: $warn,
+    )
 ));
 
 // Apply the dark theme by default
-@include mat.core-theme($dark-theme);
-@include mat.button-theme($dark-theme);
-
-// Apply the light theme only when the user prefers light themes.
+@include mat.all-component-themes($dark-theme);
 @media (prefers-color-scheme: light) {
-    @include mat.core-color($light-theme);
-    @include mat.button-color($light-theme);
+    @include mat.all-component-themes($light-theme);
 }
 
 html, body { height: 100%; }
